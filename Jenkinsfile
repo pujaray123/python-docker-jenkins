@@ -1,8 +1,5 @@
 pipeline {
-  agent any{
-    label 'linux'
-  }
-  }
+  agent any
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
@@ -12,23 +9,23 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t pujaray/python-jenkins:v1 .'
+        bat 'docker build -t pujaray/python-jenkins:v1 .'
       }
     }
     stage('Login') {
       steps {
-        sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
       }
     }
     stage('Push') {
       steps {
-        sh 'docker push pujaray/python-jenkins:v1'
+        bat 'docker push pujaray/python-jenkins:v1'
       }
     }
   }
   post {
     always {
-      sh 'docker logout'
+      bat 'docker logout'
     }
   }
 }
