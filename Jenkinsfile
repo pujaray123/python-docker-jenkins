@@ -3,9 +3,7 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
-  environment {
-    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-  }
+  
   stages {
     stage('Build') {
       steps {
@@ -14,7 +12,7 @@ pipeline {
     }
     stage('Login') {
       steps {
-        bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        bat 'echo dckr_pat_EHHKqtv8Pq4lq7PZJLKyiGgckJY | docker login -u pujaray --password-stdin'
       }
     }
     stage('Push') {
