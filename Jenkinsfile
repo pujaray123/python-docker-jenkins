@@ -12,7 +12,7 @@ pipeline {
     }
     stage('Login') {
       steps {
-        bat 'echo dckr_pat_EHHKqtv8Pq4lq7PZJLKyiGgckJY | docker login -u pujaray --password-stdin'
+        bat 'echo dckr_pat_DrLDeBV2X27KhckR5MNE79D-ku0 | docker login -u pujaray --password-stdin'
       }
     }
     stage('Push') {
